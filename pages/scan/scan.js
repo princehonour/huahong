@@ -4,19 +4,23 @@ const app = getApp()
 
 Page({
   data: {
-    
+    healthInfo: {}
   },
-  //事件处理函数
-  submit: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  onLoad: function() {
+    this.scanCode()
+  },
+  scanCode: function() {
+    wx.scanCode({
+      success: (res) => {
+        wx.navigateTo({
+          url: '../healthInfo/healthInfo',
+          success: function(res) {
+            res.eventChannel.emit('healthInfo', {
+              data: healthInfo
+            })
+          }
+        })
+      }
     })
-  },
-  onLoad: function () {
-    // wx.scanCode({
-    //   success: (res) => {
-    //     console.log(res)
-    //   }
-    // })
-  },
+  }
 })

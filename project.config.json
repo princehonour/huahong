@@ -16,8 +16,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.1",
-	"appid": "touristappid",
-	"projectname": "huahong-health",
+	"appid": "wx2f9f8b9ec2449840",
+	"projectname": "Huahong-health",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -50,8 +50,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "dev",
-					"pathName": "pages/healthInfo/healthInfo",
+					"name": "pages/scan/scan",
+					"pathName": "pages/scan/scan",
 					"query": "",
 					"scene": null
 				}
