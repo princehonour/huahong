@@ -1,0 +1,69 @@
+<!--index.wxml-->
+<view class="container">
+  <scroll-view scroll-y="true" class="scroll">
+    <view class="item">
+      <view class="key">姓名</view>
+      <view class="name">张胜</view>
+    </view>
+    <view class="item">
+      <view class="key">性别</view>
+      <view class="value">女</view>
+    </view>
+    <view class="item">
+      <view class="key">证件号</view>
+      <view class="value">5118888888888888</view>
+    </view>
+    <view class="item">
+      <view class="key">最近14天是否离沪外出</view>
+      <view class="value">是</view>
+    </view>
+    <view class="item">
+      <view class="key">外出地</view>
+      <view class="value">湖北</view>
+    </view>
+    <view class="item">
+      <view class="key">返沪日期</view>
+      <view class="value">2020-1-15</view>
+    </view>
+    <view class="item">
+      <view class="key">体温</view>
+      <view class="value">37.2℃</view>
+    </view>
+    <view class="item">
+      <view class="key">过去14天到现在，是否有发热（≥37.3℃）</view>
+      <view class="value">否</view>
+    </view>
+    <view class="item">
+      <view class="key">过去14天到现在，是否有腹泻胸闷</view>
+      <view class="value">否</view>
+    </view>
+    <view class="item">
+      <view class="key">过去14天到现在，是否有咳嗽恶心</view>
+      <view class="value">否</view>
+    </view>
+    <view class="item">
+      <view class="key">过去14天内是否与湖北地区人员有接触史</view>
+      <view class="value">否</view>
+    </view>
+    <view class="item">
+      <view class="key">过去14天内是否接触有过新型冠状病毒感染的肺炎病例？</view>
+      <view class="value">否</view>
+    </view>
+    <view class="item">
+      <view class="key">工作单位</view>
+      <view class="value">一二三化工</view>
+    </view>
+    <view class="item">
+      <view class="key">现居住地</view>
+      <view class="value">上海市黄浦区斜土东路158号</view>
+    </view>
+    <view class="item">
+      <view class="key">健康证有效期</view>
+      <view class="value">2020-2-20</view>
+    </view>
+    <view class="submit">
+      <button class="normal" style="width:40%">检疫正常</button>
+      <button class="abnormality" style="width:40%">检疫异常</button>
+    </view>
+  </scroll-view>
+</view>

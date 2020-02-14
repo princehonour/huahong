@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <view data-text="化工园区防疫检测系统" class="title">化工园区防疫检测系统</view>
+  <view class="content">
+    <view class="content-title">检测人员登录</view>
+    <input auto-focus placeholder-style="font-size:18px; letter-spacing: 2px; color:#9a9a9a83" placeholder="输入账号" />
+    <input type="password" placeholder-style="font-size:18px; letter-spacing: 2px; color:#9a9a9a83" placeholder="输入密码" />
+    <button bindtap="submit">登录</button>
+  </view>
+</view>
