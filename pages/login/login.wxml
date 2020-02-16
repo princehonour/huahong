@@ -8,11 +8,11 @@
     <view class="content-title">员工登录</view>
     <view class="input-wrapper">
       <image class="icon" src="/assets/images/login/user.png"></image>
-      <input auto-focus placeholder-style="font-size:18px; letter-spacing: 2px; color:#9a9a9a83" placeholder="输入账号" />
+      <input auto-focus placeholder-style="font-size:18px; letter-spacing: 2px; color:#9a9a9a83" placeholder="输入账号" bindinput="bindAccount" />
     </view>
     <view class="input-wrapper">
       <image class="icon" src="/assets/images/login/password.png"></image>
-      <input type="password" placeholder-style="font-size:18px; letter-spacing: 2px; color:#9a9a9a83" placeholder="输入密码" />
+      <input type="password" placeholder-style="font-size:18px; letter-spacing: 2px; color:#9a9a9a83" placeholder="输入密码" bindinput="bindPassword" />
     </view>
     <button bindtap="submit">登录</button>
   </view>

@@ -11,12 +11,12 @@ Page({
   },
   scanCode: function() {
     wx.scanCode({
-      success: (res) => {
+      success: (scanres) => {
         wx.navigateTo({
           url: '../healthInfo/healthInfo',
           success: function(res) {
-            res.eventChannel.emit('healthInfo', {
-              data: healthInfo
+            res.eventChannel.emit('healthInfoId', {
+              id: scanres.result
             })
           }
         })

@@ -1,22 +1,33 @@
-//index.js
-//获取应用实例
-const app = getApp()
+var https = require('../../https/https.js');
 
 Page({
   data: {
-    healthInfo:{
-      name:'张胜',
-      sex:'女',
-      paperNum: '511888888'
-    }
+    healthInfoId: '',
+    healthInfo: {}
   },
   //事件处理函数
-  submit: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  submit: function(event) {
+    let _this = this
+    let action = event.currentTarget.dataset.action
+    https.putRequest('/common/health-statement/quarantine', {
+      action: action,
+      id: _this.data.healthInfoId
+    }, (res) => {
+      wx.navigateTo({
+        url: '../scan/scan'
+      })
+    }, (err) => {})
   },
-  onLoad: function () {
-
+  onLoad: function() {
+    let _this = this
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('healthInfoId', function(data) {
+      https.getRequest('/common/health-statement/detail/' + data.id, null, (res) => {
+        _this.setData({
+          healthInfoId: data.id,
+          healthInfo: res.data
+        })
+      }, (err) => {})
+    })
   },
 })
