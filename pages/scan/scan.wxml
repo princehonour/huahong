@@ -1,4 +1,0 @@
-<!--index.wxml-->
-<view class="container">
-  <button bindtap="scanCode">扫描二维码</button>
-</view>

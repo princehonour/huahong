@@ -6,24 +6,20 @@ Page({
     password: ''
   },
 
-  bindAccount: function(e) {
-    this.setData({
-      account: e.detail.value
-    })
-  },
-  bindPassword: function(e) {
-    this.setData({
-      password: e.detail.value
+  verification: function(e) {
+    var name = e.currentTarget.dataset.name;　
+    this.setData({　　　　
+      [name]: e.detail.value.replace(/\s+/g, '')
     })
   },
   //事件处理函数
   submit: function() {
     https.postRequest(
-      '/common/authenticate?username=' + this.data.account + '&password=' + this.data.password, null,
+      '/common/quarantine/authenticate?username=' + this.data.account + '&password=' + this.data.password, null,
       (res) => {
         wx.setStorageSync('token', res.data.access_token)
         wx.navigateTo({
-          url: '../scan/scan'
+          url: '../homePage/homePage'
         })
       },
       (err) => {

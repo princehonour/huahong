@@ -1,4 +1,5 @@
-var baseurl = 'http://180.168.107.58:8071' //对外线上
+// var baseurl = 'http://180.168.107.58:8071' //对外线上
+var baseurl = 'http://180.168.107.58:8061' //对外线上
 var prefix = '/a'
 
 /**

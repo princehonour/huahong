@@ -1,10 +1,11 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/homePage/homePage",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/scan/scan",
-    "pages/healthInfo/healthInfo"
+    "pages/healthInfo/healthInfo",
+    "pages/healthRecord/healthRecord"
   ],
   "window": {
     "backgroundTextStyle": "light",
