@@ -31,7 +31,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid #9a9a9a0e;
   box-sizing: border-box;
   padding: 10px 20px;
@@ -43,7 +43,13 @@
 
 .key {
   color: #7c7c7c;
-  max-width: 80%;
+  max-width: 50%;
+  word-wrap: break-word;
+}
+
+.value {
+  max-width: 50%;
+  word-wrap: break-word;
 }
 
 .submit {

@@ -69,6 +69,12 @@
 					"pathName": "pages/homePage/homePage",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/healthInfo/healthInfo",
+					"pathName": "pages/healthInfo/healthInfo",
+					"scene": null
 				}
 			]
 		}

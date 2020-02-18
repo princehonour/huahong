@@ -38,7 +38,7 @@
       </view>
       <view class="item">
         <view class="key">外出地址</view>
-        <view class="value">{{healthInfo.outPlace || '--'}}</view>
+        <view class="value">{{healthInfo.allOutPlace || '--'}}</view>
       </view>
       <view class="item">
         <view class="key">外出时间</view>
