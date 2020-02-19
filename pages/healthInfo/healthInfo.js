@@ -3,20 +3,30 @@ var https = require('../../https/https.js');
 Page({
   data: {
     healthInfoId: '',
-    healthInfo: {}
+    healthInfo: {},
+    submitDisable: false
   },
   //事件处理函数
   submit: function(event) {
-    let _this = this
-    let action = event.currentTarget.dataset.action
-    https.putRequest('/common/health-statement/quarantine', {
-      action: action,
-      id: _this.data.healthInfoId
-    }, (res) => {
-      wx.navigateTo({
-        url: '../scan/scan'
+    this.setData({
+      submitDisable: true
+    })
+    setTimeout(() => {
+      let _this = this
+      let action = event.currentTarget.dataset.action
+      https.putRequest('/common/health-statement/quarantine', {
+        action: action,
+        id: _this.data.healthInfoId
+      }, (res) => {
+        wx.navigateTo({
+          url: '../homePage/homePage'
+        })
+      }, (err) => {
+        _this.setData({
+          submitDisable: false
+        })
       })
-    }, (err) => {})
+    }, 200)
   },
   onLoad: function() {
     let _this = this

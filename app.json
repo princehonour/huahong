@@ -2,10 +2,11 @@
   "pages": [
     "pages/login/login",
     "pages/homePage/homePage",
-    "pages/index/index",
     "pages/logs/logs",
     "pages/healthInfo/healthInfo",
-    "pages/healthRecord/healthRecord"
+    "pages/healthRecord/healthRecord",
+    "pages/qrcode/qrcode",
+    "pages/healthReport/healthReport"
   ],
   "window": {
     "backgroundTextStyle": "light",

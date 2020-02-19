@@ -14,7 +14,7 @@
         placeholder="输入账号"
         data-name="account"
         bindinput="verification"
-        bindblur="account"
+        value="{{account}}"
       />
     </view>
     <view class="input-wrapper">
@@ -25,7 +25,7 @@
         placeholder="输入密码"
         data-name="password"
         bindinput="verification"
-        bindblur="password"
+        value="{{password}}"
       />
     </view>
     <button bindtap="submit">登录</button>

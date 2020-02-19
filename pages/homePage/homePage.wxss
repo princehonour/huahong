@@ -53,6 +53,7 @@
   align-items: center;
   letter-spacing: 4px;
   font-size: 18px;
+  box-shadow: 0px 0px 17px 4px rgba(168, 185, 182, 0.22);
 }
 
 .content image {
@@ -67,7 +68,7 @@
   box-sizing: border-box;
   padding: 0 20px;
   bottom: 0;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .foot-content {

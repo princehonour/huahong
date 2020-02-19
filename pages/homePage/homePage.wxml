@@ -1,14 +1,14 @@
 <!--index.wxml-->
 <view class="container">
   <!-- <view class="qrcode-wrapper">
-    <image class="qrcode" src="../../assets/images/homePage/qrcode.png"></image>
+    <image class="qrcode" bindtap="toQrcode" src="../../assets/images/homePage/qrcode.png"></image>
   </view> -->
   <image class="bg" src="../../assets/images/homePage/bg.png"></image>
   <view class="banner-wrapper">
     <image class="banner" src="../../assets/images/homePage/banner.png"></image>
   </view>
   <!-- <view class="content">
-    <view style="background:#33E3C8">
+    <view style="background:#33E3C8" bindtap="toHealthReport">
       <image src="../../assets/images/homePage/note.png"></image>
       健康填报</view>
     <view style="background:#4BCFF0">

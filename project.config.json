@@ -74,6 +74,27 @@
 					"id": -1,
 					"name": "pages/healthInfo/healthInfo",
 					"pathName": "pages/healthInfo/healthInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/qrcode/qrcode",
+					"pathName": "pages/qrcode/qrcode",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/healthRecord/healthRecord",
+					"pathName": "pages/healthRecord/healthRecord",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/healthReport/healthReport",
+					"pathName": "pages/healthReport/healthReport",
 					"scene": null
 				}
 			]

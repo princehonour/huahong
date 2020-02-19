@@ -7,7 +7,7 @@ Page({
   },
 
   verification: function(e) {
-    var name = e.currentTarget.dataset.name;　
+    var name = e.currentTarget.dataset.name;
     this.setData({　　　　
       [name]: (e.detail.value + '').replace(/\s+/g, '')
     })

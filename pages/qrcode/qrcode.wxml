@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container">
+  <image class="bg" src="../../assets/images/qrcode/bg.png"></image>
+  <view class="content">
+    <view hidden="{{personalInfo.qrcode}}" class="mask"></view>
+    <view class="qrcode-wrapper">
+      <canvas hidden="{{!personalInfo.qrcode}}" class="qrcode" canvas-id="myQrcode"></canvas>
+      <image hidden="{{personalInfo.qrcode}}" class="forbid" src="../../assets/images/qrcode/forbid.png"></image>
+      <image hidden="{{personalInfo.qrcode}}" class="qrcode" src="../../assets/images/qrcode/qrcode.png"></image>
+    </view>
+    <view class="qrcode-text-wrapper">
+      <view class="qrcode-text" hidden="{{!personalInfo.qrcode}}">健康生命二维码</view>
+      <view class="no-qrcode-text" hidden="{{personalInfo.qrcode}}">
+        <view>温馨提示</view>
+        <view>健康声明通过后显示二维码</view>
+      </view>
+    </view>
+  </view>
+</view>
