@@ -4,7 +4,9 @@ Page({
   data: {
     healthInfoId: '',
     healthInfo: {},
-    submitDisable: false
+    submitDisable: false,
+    showContent: false,
+    showButtons: false
   },
   //事件处理函数
   submit: function(event) {
@@ -15,7 +17,7 @@ Page({
       let _this = this
       let action = event.currentTarget.dataset.action
       https.putRequest('/common/health-statement/quarantine', {
-        action: action,
+        action:action,
         id: _this.data.healthInfoId
       }, (res) => {
         wx.navigateTo({
@@ -37,7 +39,9 @@ Page({
           if (res && res.data) {
             _this.setData({
               healthInfoId: data.id,
-              healthInfo: res.data
+              healthInfo: res.data,
+              showContent: true,
+              showButtons: data.action === 'QUARANTINE_SCAN'
             })
           } else {
             wx.showToast({
@@ -48,13 +52,5 @@ Page({
         }, (err) => {})
       })
     }
-  },
-  checkNotNull(value) {
-    if (!value) {
-      return false
-    } else if (JSON.stringify(value) === '{}') {
-      return false
-    }
-    return true
   }
 })

@@ -38,7 +38,8 @@ function deleteRequest(url, params, onSuccess, onFailed) {
 
 function request(url, params, method, onSuccess, onFailed) {
   wx.showLoading({
-    title: "正在加载中...",
+    title: "加载中...",
+    mask: true
   })
   wx.request({
     url: baseurl + prefix + url,
@@ -68,6 +69,7 @@ function request(url, params, method, onSuccess, onFailed) {
       }
     },
     fail: function(error) {
+      wx.hideLoading();
       onFailed(error); //failure for other reasons
     }
   })

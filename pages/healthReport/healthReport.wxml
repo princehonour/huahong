@@ -1,74 +1,7 @@
-<!--index.wxml-->
 <view class="container">
   <view class="content" hidden="{{JSON.stringify(healthInfo) === '{}'}}">
     <scroll-view scroll-y="true" class="scroll">
-      <view class="subTitle">访客信息</view>
-      <view class="item">
-        <view class="key">姓名</view>
-        <view class="name">{{healthInfo.name || '--'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">出生日期</view>
-        <view class="value">{{healthInfo.birthDate || '--'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">证件号</view>
-        <view class="value">{{healthInfo.papersNo || '--'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">车牌号</view>
-        <view class="value">{{healthInfo.plateNo || '--'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">联系电话</view>
-        <view class="value">{{healthInfo.compContact || '--'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">通行证号</view>
-        <view class="value">{{healthInfo.passNo || '--'}}</view>
-      </view>
-      <view class="subTitle">近14天行程信息</view>
-      <view class="item">
-        <view class="key">来沪住址</view>
-        <view class="value">{{healthInfo.livingPlace || '--'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">是否离沪外出</view>
-        <view class="value" style="{{healthInfo.disasterReturn == 0 ? 'color:#5AC8B7':'color:#FF2E2E'}}">{{healthInfo.disasterReturn == 0 ? '否':'是'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">外出地址</view>
-        <view class="value">{{healthInfo.allOutPlace || '--'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">外出时间</view>
-        <view class="value">{{healthInfo.outDate || '--'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">返回时间</view>
-        <view class="value">{{healthInfo.returnDate || '--'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">是否疫情重点区返沪</view>
-        <view class="value" style="{{healthInfo.disasterReturn == 0 ? 'color:#5AC8B7':'color:#FF2E2E'}}">{{healthInfo.disasterReturn == 0 ? '否':'是'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">居家/集中隔离</view>
-        <view class="value">{{healthInfo.defensiveMeasures == 1 ? '居家':'集中隔离'}}</view>
-      </view>
-      <view class="item">
-        <view class="key">隔离观察解除时间</view>
-        <view class="value">{{healthInfo.isolationReleaseTime || '--'}}</view>
-      </view>
-      <view class="submit" hidden="{{healthInfo.quarantineResult != 0}}">
-        <button class="normal" style="width:40%" bindtap="submit" data-action="1">检疫正常</button>
-        <button class="abnormality" style="width:40%" bindtap="submit" data-action="2">检疫异常</button>
-      </view>
-      <view class="subTitle" hidden="{{healthInfo.quarantineResult == 0}}">检疫结果</view>
-      <view class="item" hidden="{{healthInfo.quarantineResult == 0}}">
-        <view class="key">是否正常</view>
-        <view class="value" style="{{healthInfo.quarantineResult == 1 ? 'color:#5AC8B7':'color:#FF2E2E'}}">{{healthInfo.quarantineResult == 1 ? '是':'否'}}</view>
-      </view>
+    
     </scroll-view>
   </view>
   <view class="no-content" hidden="{{!(JSON.stringify(healthInfo) === '{}')}}">

@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="content" hidden="{{JSON.stringify(healthInfo) === '{}'}}">
+  <view class="content" wx:if="{{showContent}}">
     <scroll-view scroll-y="true" class="scroll">
       <view class="subTitle">访客信息</view>
       <view class="item">
@@ -60,7 +60,7 @@
         <view class="key">隔离观察解除时间</view>
         <view class="value">{{healthInfo.isolationReleaseTime || '--'}}</view>
       </view>
-      <view class="submit" hidden="{{healthInfo.quarantineResult != 0}}">
+      <view class="submit" hidden="{{healthInfo.quarantineResult != 0 || !showButtons}}">
         <button class="normal" disabled="{{submitDisable}}" style="width:40%" bindtap="submit" data-action="1">检疫正常</button>
         <button class="abnormality" disabled="{{submitDisable}}" style="width:40%" bindtap="submit" data-action="2">检疫异常</button>
       </view>
@@ -71,7 +71,7 @@
       </view>
     </scroll-view>
   </view>
-  <view class="no-content" hidden="{{!(JSON.stringify(healthInfo) === '{}')}}">
+  <view class="no-content" wx:if="{{!showContent}}">
     暂无信息
   </view>
 </view>

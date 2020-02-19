@@ -22,7 +22,7 @@
 
 .banner-wrapper {
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 0 1rem;
   width: 100%;
 }
 
@@ -34,16 +34,24 @@
 .content {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: space-between;
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 0 1rem;
   margin-top: 10px;
 }
 
-.content >view {
+.item-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.item {
   width: 48%;
-  height: 140px;
+  height: 6rem;
   border-radius: 8px;
   color: #fff;
   font-weight: bold;
@@ -53,7 +61,6 @@
   align-items: center;
   letter-spacing: 4px;
   font-size: 18px;
-  box-shadow: 0px 0px 17px 4px rgba(168, 185, 182, 0.22);
 }
 
 .content image {

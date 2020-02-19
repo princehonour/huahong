@@ -4,26 +4,18 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"coverView": true,
 		"autoAudits": false,
+		"coverView": true,
 		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		}
+		"scopeDataCheck": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.4",
+	"libVersion": "2.0.4",
 	"appid": "wx2f9f8b9ec2449840",
 	"projectname": "miniprogram-1",
 	"debugOptions": {
@@ -95,6 +87,13 @@
 					"id": -1,
 					"name": "pages/healthReport/healthReport",
 					"pathName": "pages/healthReport/healthReport",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/healthRecord/healthRecord",
+					"pathName": "pages/healthRecord/healthRecord",
 					"scene": null
 				}
 			]

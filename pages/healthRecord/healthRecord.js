@@ -2,10 +2,8 @@ var https = require('../../https/https.js');
 
 Page({
   data: {
-    healthInfoId: '',
-    healthInfo: {}
+    records: []
   },
-  //事件处理函数
   submit: function(event) {
     let _this = this
     let action = event.currentTarget.dataset.action
@@ -20,21 +18,68 @@ Page({
   },
   onLoad: function() {
     let _this = this
-    const eventChannel = this.getOpenerEventChannel()
-    eventChannel.on('healthInfoId', function(data) {
-      https.getRequest('/common/health-statement/detail/' + data.id, null, (res) => {
-        if(res && res.data){
-          _this.setData({
-            healthInfoId: data.id,
-            healthInfo: res.data
-          })
-        }else{
-          wx.showToast({
-            title: '未查询到健康证信息',
-            icon: 'none'
-          })
-        }
-      }, (err) => {})
-    })
+    // https.getRequest('/common/health-statement/detail/' + data.id, null, (res) => {
+    //   if(res && res.data){
+    //     _this.setData({
+    //       healthInfoId: data.id,
+    //       healthInfo: res.data
+    //     })
+    //   }else{
+    //     wx.showToast({
+    //       title: '未查询到健康证信息',
+    //       icon: 'none'
+    //     })
+    //   }
+    // }, (err) => {})
+    setTimeout(() => {
+      this.setData({
+        records: [{
+            checkTime: '2020-2-20 09:05',
+            checkStatus: 0,
+            status: 0,
+            name: '李大宝',
+            plateNum: '沪A125k1',
+            phoneNum: '18236598522',
+            submitTime: '2020-2-30 08:30'
+          },
+          {
+            checkTime: '2020-2-20 09:05',
+            checkStatus: 1,
+            status: 0,
+            name: '李大宝',
+            plateNum: '沪A125k1',
+            phoneNum: '18236598522',
+            submitTime: '2020-2-30 08:30'
+          },
+          {
+            checkTime: '2020-2-20 09:05',
+            checkStatus: 2,
+            status: 0,
+            name: '李大宝',
+            plateNum: '沪A125k1',
+            phoneNum: '18236598522',
+            submitTime: '2020-2-30 08:30'
+          },
+          {
+            checkTime: '2020-2-20 09:05',
+            checkStatus: 1,
+            status: 1,
+            name: '李大宝',
+            plateNum: '沪A125k1',
+            phoneNum: '18236598522',
+            submitTime: '2020-2-30 08:30'
+          },
+          {
+            checkTime: '2020-2-20 09:05',
+            checkStatus: 1,
+            status: 2,
+            name: '李大宝',
+            plateNum: '沪A125k1',
+            phoneNum: '18236598522',
+            submitTime: '2020-2-30 08:30'
+          }
+        ]
+      })
+    }, 1000)
   }
 })

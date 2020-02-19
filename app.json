@@ -2,7 +2,6 @@
   "pages": [
     "pages/login/login",
     "pages/homePage/homePage",
-    "pages/logs/logs",
     "pages/healthInfo/healthInfo",
     "pages/healthRecord/healthRecord",
     "pages/qrcode/qrcode",

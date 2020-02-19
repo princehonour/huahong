@@ -1,23 +1,38 @@
 <!--index.wxml-->
 <view class="container">
-  <!-- <view class="qrcode-wrapper">
+  <view class="qrcode-wrapper">
     <image class="qrcode" bindtap="toQrcode" src="../../assets/images/homePage/qrcode.png"></image>
-  </view> -->
+  </view>
   <image class="bg" src="../../assets/images/homePage/bg.png"></image>
   <view class="banner-wrapper">
     <image class="banner" src="../../assets/images/homePage/banner.png"></image>
   </view>
-  <!-- <view class="content">
-    <view style="background:#33E3C8" bindtap="toHealthReport">
-      <image src="../../assets/images/homePage/note.png"></image>
-      健康填报</view>
-    <view style="background:#4BCFF0">
-      <image src="../../assets/images/homePage/tem_gun.png"></image>健康记录</view>
-  </view> -->
-  <view class="foot" bindtap="scanCode">
+  <view class="content">
+    <view class="item-row">
+      <view class="item" style="background:#33E3C8" bindtap="toHealthReport">
+        <image src="../../assets/images/homePage/note.png"></image>
+        健康填报
+      </view>
+      <view class="item" style="background:#4BCFF0" bindtap="toHealthRecord">
+        <image src="../../assets/images/homePage/tem_gun.png"></image>
+        健康记录
+      </view>
+    </view>
+    <view class="item-row">
+      <view class="item" style="background:#35D2D7" bindtap="scanCode" data-action="HEALTH_SCAN">
+        <image src="../../assets/images/homePage/scan_one.png"></image>
+        健康扫描
+      </view>
+      <view class="item" style="background:#22CCC2" bindtap="scanCode" data-action="QUARANTINE_SCAN">
+        <image src="../../assets/images/homePage/scan_two.png"></image>
+        检疫扫描
+      </view>
+    </view>
+  </view>
+  <!-- <view class="foot" bindtap="scanCode">
     <view class="foot-content">
       <image src="../../assets/images/homePage/qrcode-scan.png "></image>
       <view class="text">健康扫描</view>
     </view>
-  </view>
+  </view> -->
 </view>

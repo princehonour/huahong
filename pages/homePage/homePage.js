@@ -1,6 +1,5 @@
 var https = require('../../https/https.js');
 
-
 Page({
   data: {
     personalInfo: {},
@@ -9,7 +8,8 @@ Page({
   onLoad: function() {
     this.getData()
   },
-  scanCode: function() {
+  scanCode: function(event) {
+    let action = event.currentTarget.dataset.action
     wx.scanCode({
       success: (scanres) => {
         if (this.checkId(scanres.result)) {
@@ -17,7 +17,8 @@ Page({
             url: '../healthInfo/healthInfo',
             success: function(res) {
               res.eventChannel.emit('healthInfoId', {
-                id: scanres.result
+                id: scanres.result,
+                action: action
               })
             }
           })
@@ -53,9 +54,14 @@ Page({
       url: '../qrcode/qrcode'
     })
   },
-  toHealthReport: function (){
+  toHealthReport: function() {
     wx.navigateTo({
       url: '../healthReport/healthReport'
+    })
+  },
+  toHealthRecord: function() {
+    wx.navigateTo({
+      url: '../healthRecord/healthRecord'
     })
   }
 })
