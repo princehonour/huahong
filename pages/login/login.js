@@ -3,7 +3,8 @@ var https = require('../../https/https.js');
 Page({
   data: {
     account: '',
-    password: ''
+    password: '',
+    autoLogin: false
   },
 
   verification: function(e) {
@@ -19,6 +20,9 @@ Page({
       '/common/quarantine/authenticate?username=' + this.data.account + '&password=' + this.data.password, null,
       (res) => {
         wx.setStorageSync('token', res.data.access_token)
+        if (this.data.auto_token) {
+          wx.setStorageSync('auto_token', res.data.access_token)
+        }
         wx.navigateTo({
           url: '../homePage/homePage'
         })
@@ -45,6 +49,12 @@ Page({
     return true
   },
   onLoad: function() {
-
+    let auto_token = wx.wx.getStorageSync('auto_token')
+    if (auto_token) {
+      wx.setStorageSync('token', auto_token)
+      wx.navigateTo({
+        url: '../homePage/homePage'
+      })
+    }
   },
 })

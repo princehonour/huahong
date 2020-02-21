@@ -50,9 +50,14 @@ function request(url, params, method, onSuccess, onFailed) {
     },
     success: function(res) {
       wx.hideLoading();
-      if (res.data.code == '-1' && res.data.errorCode == '501') {
+      if (res.statusCode == 401) {
+        wx.removeStorageSync('auto_token')
+        wx.showToast({
+          title: '登录超时，请重新登录',
+          icon: 'none'
+        })
         wx.navigateTo({
-          url: '/pages/index/index?reLogin=' + 1,
+          url: '../login/login'
         })
       }
       if (res.data) {

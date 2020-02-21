@@ -3,10 +3,22 @@ var https = require('../../https/https.js');
 Page({
   data: {
     personalInfo: {},
-    healthInfo: {}
+    healthInfo: {},
+    checkInfo: {
+      total: 18960,
+      normal: 18956,
+      abnormal: 4
+    }
+  },
+  onShow: function() {
+    wx.hideHomeButton()
+    wx.hideTabBar()
   },
   onLoad: function() {
     this.getData()
+  },
+  onUnload: function() {
+
   },
   scanCode: function(event) {
     let action = event.currentTarget.dataset.action
