@@ -50,7 +50,7 @@ function request(url, params, method, onSuccess, onFailed) {
     },
     success: function(res) {
       wx.hideLoading();
-      if (res.statusCode == 401) {
+      if (res.statusCode == 401 && res.data && res.data.httpStatus === 'OK') {
         wx.removeStorageSync('auto_token')
         wx.showToast({
           title: '登录超时，请重新登录',

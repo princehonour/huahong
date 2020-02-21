@@ -31,7 +31,7 @@ Page({
         //   }
         // })
         wx.showToast({
-          title: '未查询二维码',
+          title: '未查询到二维码',
           icon: 'none'
         })
       }

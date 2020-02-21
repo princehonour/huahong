@@ -16,16 +16,19 @@ Page({
   //事件处理函数
   submit: function() {
     if (!this.preCheck()) return
+    let _this = this
     https.postRequest(
       '/common/quarantine/authenticate?username=' + this.data.account + '&password=' + this.data.password, null,
       (res) => {
-        wx.setStorageSync('token', res.data.access_token)
-        if (this.data.auto_token) {
-          wx.setStorageSync('auto_token', res.data.access_token)
+        if (res.data) {
+          wx.setStorageSync('token', res.data.access_token)
+          if (_this.data.auto_token) {
+            wx.setStorageSync('auto_token', res.data.access_token)
+          }
+          wx.navigateTo({
+            url: '../homePage/homePage'
+          })
         }
-        wx.navigateTo({
-          url: '../homePage/homePage'
-        })
       },
       (err) => {
         console.log(err)
@@ -49,12 +52,12 @@ Page({
     return true
   },
   onLoad: function() {
-    let auto_token = wx.wx.getStorageSync('auto_token')
-    if (auto_token) {
-      wx.setStorageSync('token', auto_token)
-      wx.navigateTo({
-        url: '../homePage/homePage'
-      })
-    }
+    // let auto_token = wx.getStorageSync('auto_token')
+    // if (auto_token) {
+    //   wx.setStorageSync('token', auto_token)
+    //   wx.navigateTo({
+    //     url: '../homePage/homePage'
+    //   })
+    // }
   },
 })

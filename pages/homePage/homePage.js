@@ -12,13 +12,9 @@ Page({
   },
   onShow: function() {
     wx.hideHomeButton()
-    wx.hideTabBar()
   },
   onLoad: function() {
     this.getData()
-  },
-  onUnload: function() {
-
   },
   scanCode: function(event) {
     let action = event.currentTarget.dataset.action
