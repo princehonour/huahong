@@ -4,7 +4,7 @@ var https = require('../../https/https.js');
 
 Page({
   data: {
-    personalInfo: {},
+    qrCode: ''
   },
 
   onLoad: function() {
@@ -12,28 +12,26 @@ Page({
   },
   getData: function() {
     let _this = this
-    https.getRequest('/common/health-statement/new', null, (res) => {
+    https.getRequest('/common/health-statement/employee/new', null, (res) => {
       if (res && res.data) {
+        let qrCode = res.data.qrCode
+        if (qrCode) {
+          drawQrcode({
+            width: 180,
+            height: 180,
+            canvasId: 'myQrcode',
+            text: qrCode
+          })
+        }
         _this.setData({
-          personalInfo: res.data
-        })
-        drawQrcode({
-          width: 180,
-          height: 180,
-          canvasId: 'myQrcode',
-          text: this.data.personalInfo.qrcode
+          qrCode: qrCode
         })
       } else {
-        //TODO test
-        // _this.setData({
-        //   personalInfo: {
-        //     qrcode: 'www.baidu.com'
-        //   }
+        console.log('未查询到二维码')
+        // wx.showToast({
+        //   title: '未查询到二维码',
+        //   icon: 'none'
         // })
-        wx.showToast({
-          title: '未查询到二维码',
-          icon: 'none'
-        })
       }
     }, (err) => {})
   },

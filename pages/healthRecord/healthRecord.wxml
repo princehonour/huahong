@@ -1,54 +1,62 @@
 <view class="container">
-  <view class="content" hidden="{{JSON.stringify(healthInfo) === '{}'}}">
-    <view class="time-scope-wrapper">
-      <picker mode="date" value="{{startTime}}" data-name="startTime" start="2020-01-01" end="2020-12-31" bindchange="bindTimeChange">
-        <view class="time-picker">
-          {{startTime}}
-          <image src="../../assets/images/healthRecord/arrow_down.png"></image>
-        </view>
-      </picker>
-      <view class="time-seperator"></view>
-      <picker mode="date" value="{{endTime}}" data-name="endTime" start="2020-01-01" end="2020-12-31" bindchange="bindTimeChange">
-        <view class="time-picker">
-          {{endTime}}
-          <image src="../../assets/images/healthRecord/arrow_down.png"></image>
-        </view>
-      </picker>
+  <view class="time-scope-wrapper">
+    <picker mode="date" value="{{startTime}}" data-name="startTime" start="2020-01-01" end="2020-12-31" bindchange="bindTimeChange">
+      <view class="time-picker">
+        {{startTime}}
+        <image src="../../assets/images/healthRecord/arrow_down.png"></image>
+      </view>
+    </picker>
+    <view class="time-seperator"></view>
+    <picker mode="date" value="{{endTime}}" data-name="endTime" start="2020-01-01" end="2020-12-31" bindchange="bindTimeChange">
+      <view class="time-picker">
+        {{endTime}}
+        <image src="../../assets/images/healthRecord/arrow_down.png"></image>
+      </view>
+    </picker>
+    <view class="operation">
       <view class="search" bindtap="search">
-        搜索
+        <image src="../../assets/images/healthRecord/search.png"></image>
+      </view>
+      <view class="reset" bindtap="reset">
+        <image src="../../assets/images/healthRecord/reset.png"></image>
       </view>
     </view>
-    <scroll-view scroll-y="true" class="scroll">
+  </view>
+  <view class="content" wx:if="{{recordsDisplay.length > 0}}">
+    <view class="total">共
+      <view>{{total}}</view> 条记录</view>
+    <scroll-view scroll-y="true" class="scroll" bindscrolltolower="bindscrolltolower">
       <block wx:for="{{recordsDisplay}}" wx:key="index">
         <view class="item">
           <view class="item-head">
-            <view>{{item.checkTime}}</view>
+            <view>有效期：{{item.validity || '--'}}</view>
             <view class="status" style="{{item.statusDisplay.style}}">{{item.statusDisplay.value}}</view>
           </view>
           <view class="seperator"></view>
           <view class="item-body">
             <view>
               <view>姓名</view>
-              <view style="font-weight:bold;letter-spacing:0.1rem">{{item.name}}</view>
+              <view style="font-weight:bold;letter-spacing:0.1rem">{{item.name || '--'}}</view>
             </view>
             <view>
-              <view>车牌号码</view>
-              <view style="font-weight:bold;letter-spacing:0.1rem">{{item.plateNum}}</view>
+              <view>是否离沪外出</view>
+              <view style="{{item.leaveDisplay.style}}">{{item.leaveDisplay.value || '--'}}</view>
             </view>
             <view>
               <view>电话号码</view>
-              <view>{{item.phoneNum}}</view>
+              <view>{{item.compContact || '--'}}</view>
             </view>
             <view>
               <view>填报时间</view>
-              <view>{{item.submitTime}}</view>
+              <view>{{item.createdDate || '--'}}</view>
             </view>
           </view>
         </view>
       </block>
+      <view></view>
     </scroll-view>
   </view>
-  <view class="no-content" hidden="{{!(JSON.stringify(healthInfo) === '{}')}}">
+  <view class="no-content" wx:if="{{recordsDisplay.length === 0}}">
     暂无信息
   </view>
 </view>

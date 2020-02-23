@@ -1,0 +1,13 @@
+var arrayUtil = {
+  includes: function(array, ele) {
+    if (array.constructor.toString().indexOf('Array') > -1) {
+      return array.indexOf(ele) > -1
+    } else {
+      return false
+    }
+  }
+}
+
+module.exports = {
+  includes: arrayUtil.includes
+}

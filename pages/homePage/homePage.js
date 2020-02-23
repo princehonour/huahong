@@ -4,32 +4,43 @@ Page({
   data: {
     personalInfo: {},
     healthInfo: {},
-    checkInfo: {
-      total: 18960,
-      normal: 18956,
-      abnormal: 4
+    permissions: [],
+    analysisData: {
+      quarantineNumber: 0,
+      quarantineNormalNumber: 0,
+      quarantineAbnormalNumber: 0
     }
   },
   onShow: function() {
-    wx.hideHomeButton()
+    wx.hideHomeButton({
+      success: function() {},
+      fail: function() {},
+      complete: function() {}
+    })
   },
   onLoad: function() {
-    this.getData()
+    this.getUserInfo()
+    this.getAnalysisData()
   },
   scanCode: function(event) {
     let action = event.currentTarget.dataset.action
     wx.scanCode({
       success: (scanres) => {
-        if (this.checkId(scanres.result)) {
-          wx.navigateTo({
-            url: '../healthInfo/healthInfo',
-            success: function(res) {
-              res.eventChannel.emit('healthInfoId', {
-                id: scanres.result,
-                action: action
-              })
-            }
-          })
+        if (JSON.parse(scanres.result)) {
+          let result = JSON.parse(scanres.result)
+          if (this.checkId(result)) {
+            wx.navigateTo({
+              url: '../healthInfo/healthInfo',
+              success: function(res) {
+                res.eventChannel.emit('healthInfoId', {
+                  id: result.id,
+                  type: result.type,
+                  action: action
+                })
+              }
+            })
+          }
+
         } else {
           wx.showToast({
             title: '请扫描正确的二维码',
@@ -39,21 +50,34 @@ Page({
       }
     })
   },
-  checkId: function(id) {
-    console.log(id)
-    return /[0-9a-f]{8}([0-9a-f]{4}){3}[0-9a-f]{12}/.test(id);
+  checkId: function(result) {
+    // { "id": "2df3060e6ebfc31cf708a6dd848be79f", "type": "EMPLOYEE" }
+    return result && result.id && result.type
+    // return result && result.id && result.type ?
+    //   /[0-9a-f]{8}([0-9a-f]{4}){3}[0-9a-f]{12}/.test(result.id) :
+    //   false
   },
-  getData: function() {
-    https.getRequest('/common/health-statement/new', null, (res) => {
+  getUserInfo: function() {
+    let _this = this
+    https.getRequest('/sys/user/info', null, (res) => {
       if (res && res.data) {
         _this.setData({
-          personalInfo: res.data
+          permissions: res.data.permissions
         })
       } else {
-        // wx.showToast({
-        //   title: '未查询到个人信息',
-        //   icon: 'none'
-        // })
+        console.log('未查询到个人信息')
+      }
+    }, (err) => {})
+  },
+  getAnalysisData: function() {
+    let _this = this
+    https.getRequest('/common/health-statement/quarantine/analysis', null, (res) => {
+      if (res && res.data) {
+        _this.setData({
+          analysisData: res.data
+        })
+      } else {
+        console.log('未查询到检疫统计信息')
       }
     }, (err) => {})
   },

@@ -1,3 +1,5 @@
+<!-- utils -->
+<wxs module="arrayUtil" src="../../utils/arrayUtil.wxs"></wxs>
 <!--index.wxml-->
 <view class="container">
   <view class="qrcode-wrapper">
@@ -10,10 +12,10 @@
   <view class="content">
     <view class="item-row">
       <view class="first-item">
-        当日检疫总数: {{checkInfo.total}}人 正常：
-        <view style="color:#51CCBA">{{checkInfo.normal}}</view>
+        当日检疫总数: {{analysisData.quarantineNumber}}人 正常：
+        <view style="color:#51CCBA">{{analysisData.quarantineNormalNumber}}</view>
         人 异常：
-        <view style="color:#FF6161">{{checkInfo.abnormal}}</view>人
+        <view style="color:#FF6161">{{analysisData.quarantineAbnormalNumber}}</view>人
       </view>
     </view>
     <view class="item-row">
@@ -27,11 +29,11 @@
       </view>
     </view>
     <view class="item-row">
-      <view class="item" style="background:#35D2D7" bindtap="scanCode" data-action="HEALTH_SCAN">
+      <view class="item" wx:if="{{arrayUtil.includes(permissions,'quarantine-read')}}" style="background:#35D2D7" bindtap="scanCode" data-action="HEALTH_SCAN">
         <image src="../../assets/images/homePage/scan_one.png"></image>
         健康扫描
       </view>
-      <view class="item" style="background:#22CCC2" bindtap="scanCode" data-action="QUARANTINE_SCAN">
+      <view class="item" wx:if="{{arrayUtil.includes(permissions,'quarantine-audit')}}" style="background:#22CCC2" bindtap="scanCode" data-action="QUARANTINE_SCAN">
         <image src="../../assets/images/homePage/scan_two.png"></image>
         检疫扫描
       </view>

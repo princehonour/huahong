@@ -16,7 +16,11 @@
     </view>
     <button bindtap="submit">登录</button>
     <view class="auto-login">
-      <checkbox color="#5AC8B7" value="{{autoLogin}}" checked="{{autoLogin}}" /> 自动登录
+      <checkbox-group bindchange="checkboxChange">
+        <label class="checkbox">
+          <checkbox color="#5AC8B7" value="auto_login"/> 自动登录
+        </label>
+      </checkbox-group>
     </view>
   </view>
 </view>
