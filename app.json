@@ -14,5 +14,23 @@
     "navigationBarTextStyle": "black"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-field": "vant/field/index",
+    "van-button": "vant/button/index",
+    "van-popup": "vant/popup/index",
+    "van-picker": "vant/picker/index",
+    "van-radio": "vant/radio/index",
+    "van-radio-group": "vant/radio-group/index",
+    "van-cell": "vant/cell/index",
+    "van-cell-group": "vant/cell-group/index",
+    "van-icon": "vant/icon/index",
+    "van-datetime-picker": "vant/datetime-picker/index",
+    "van-steps": "vant/steps/index",
+    "van-stepper": "vant/stepper/index",
+    "van-checkbox": "vant/checkbox/index",
+    "van-checkbox-group": "vant/checkbox-group/index",
+    "van-image": "vant/image/index",
+    "van-overlay": "vant/overlay/index"
+  }
 }

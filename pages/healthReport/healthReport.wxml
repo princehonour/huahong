@@ -1,10 +1,44 @@
-<view class="container">
-  <view class="content" hidden="{{JSON.stringify(healthInfo) === '{}'}}">
-    <scroll-view scroll-y="true" class="scroll">
-    
-    </scroll-view>
-  </view>
-  <view class="no-content" hidden="{{!(JSON.stringify(healthInfo) === '{}')}}">
-    暂无信息
+<!--pages/health/health.wxml-->
+<view class="health">
+  <van-popup show="{{ show2 }}" position="bottom" bind:close="onClose1">
+    <van-picker columns="{{ sexlist }}" confirm-button-text="确定" cancel-button-text="取消" bind:cancel="onClose1" bind:confirm="onChange2" show-toolbar/>
+  </van-popup>
+  <van-popup show="{{ time1 }}" bind:close="onClose" position="bottom" custom-style="height: 40%;">
+    <van-datetime-picker type="date" value="{{ currentDate }}" bind:input="onInput" formatter="{{ formatter }}" confirm-button-text="确定" cancel-button-text="取消" bind:cancel="onClose" bind:confirm="sure" />
+  </van-popup>
+  <van-popup show="{{ placeshow }}" bind:close="placeclose" position="bottom">
+    <van-picker columns="{{ columns }}" show-toolbar bind:change="placechange1" confirm-button-text="确定" cancel-button-text="取消" bind:cancel="placeclose" bind:confirm="placesure" />
+  </van-popup>
+  <view class="container">
+    <view class="title">个人信息</view>
+    <van-field required value="{{ name }}" label="姓名" maxlength="50" placeholder-style="text-align:right" bind:input="namechange" input-align="right" placeholder="请输入姓名" />
+    <van-cell required title="性别" is-link arrow-direction="down" value="{{sex == ''?'请选择性别':sex}}" bind:click="choosesex" class="{{sex == ''?'':'block'}}" />
+    <van-field required value="{{ card }}" label="身份证号" maxlength="50" placeholder-style="text-align:right" bind:input="cardchange" input-align="right" placeholder="请输入身份证号" />
+    <van-cell required title="近14天是否离沪外出">
+      <view Slot="default" data-type="1">
+        <van-radio-group value="{{ radio }}" bind:change="onChange">
+          <van-radio name="1" style="float: right;width: 50%;justify-content: flex-end;">是</van-radio>
+          <van-radio name="0" style="float: right;width: 50%;justify-content: flex-end;">否</van-radio>
+        </van-radio-group>
+      </view>
+    </van-cell>
+
+    <van-cell required title="外出地" wx:if="{{radio == 1}}">
+      <view Slot="default" data-type="1">
+        <van-radio-group value="{{ radio2 }}" bind:change="choosec">
+          <van-radio name="1" style="float: right;width: 50%;justify-content: flex-end;">国内</van-radio>
+          <van-radio name="0" style="float: right;width: 50%;justify-content: flex-end;">国外</van-radio>
+        </van-radio-group>
+      </view>
+    </van-cell>
+    <van-cell required wx:if="{{radio == 1 && radio2 == 1}}" is-link arrow-direction="down" value="{{goplace1 == ''?'请选择省市县':goplace1}}" bind:click="chooseplace" class="{{goplace1 != ''?'block':''}}" />
+    <van-field required value="{{ goplace }}" wx:if="{{radio == 1}}" maxlength="50" placeholder-style="text-align:right" bind:input="goplacechange" input-align="right" placeholder="请输入详细地址" />
+    <van-cell required title="返沪日期" wx:if="{{radio == 1}}" is-link arrow-direction="down" value="{{time1value == ''?'请选择日期':time1value}}" bind:click="choosetime1" class="{{time1value != ''?'block':''}}" />
+    <van-field required value="{{ nowplace }}" label="现居住地" maxlength="50" placeholder-style="text-align:right" bind:input="nowplacechange" input-align="right" placeholder="请输入" />
+    <van-field required value="{{ workplace }}" label="工作单位" maxlength="50" placeholder-style="text-align:right" bind:input="workchange" input-align="right" placeholder="请输入" />
+    <view class="btn">
+      <view bindtap="submit">提交报告</view>
+    </view>
+
   </view>
 </view>
