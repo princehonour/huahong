@@ -1,12 +1,29 @@
 <view class="container">
   <view class="content" hidden="{{JSON.stringify(healthInfo) === '{}'}}">
-    <view>搜索</view>
+    <view class="time-scope-wrapper">
+      <picker mode="date" value="{{startTime}}" data-name="startTime" start="2020-01-01" end="2020-12-31" bindchange="bindTimeChange">
+        <view class="time-picker">
+          {{startTime}}
+          <image src="../../assets/images/healthRecord/arrow_down.png"></image>
+        </view>
+      </picker>
+      <view class="time-seperator"></view>
+      <picker mode="date" value="{{endTime}}" data-name="endTime" start="2020-01-01" end="2020-12-31" bindchange="bindTimeChange">
+        <view class="time-picker">
+          {{endTime}}
+          <image src="../../assets/images/healthRecord/arrow_down.png"></image>
+        </view>
+      </picker>
+      <view class="search" bindtap="search">
+        搜索
+      </view>
+    </view>
     <scroll-view scroll-y="true" class="scroll">
-      <block wx:for="{{records}}" wx:key="index">
+      <block wx:for="{{recordsDisplay}}" wx:key="index">
         <view class="item">
           <view class="item-head">
             <view>{{item.checkTime}}</view>
-            <view>{{item.checkStatus}}</view>
+            <view class="status" style="{{item.statusDisplay.style}}">{{item.statusDisplay.value}}</view>
           </view>
           <view class="seperator"></view>
           <view class="item-body">

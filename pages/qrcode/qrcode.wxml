@@ -12,7 +12,7 @@
       <view class="qrcode-text" hidden="{{!personalInfo.qrcode}}">健康生命二维码</view>
       <view class="no-qrcode-text" hidden="{{personalInfo.qrcode}}">
         <view>温馨提示</view>
-        <view>健康声明通过后显示二维码</view>
+        <view>健康信息通过后显示二维码</view>
       </view>
     </view>
   </view>

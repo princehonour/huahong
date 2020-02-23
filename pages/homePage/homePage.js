@@ -3,7 +3,15 @@ var https = require('../../https/https.js');
 Page({
   data: {
     personalInfo: {},
-    healthInfo: {}
+    healthInfo: {},
+    checkInfo: {
+      total: 18960,
+      normal: 18956,
+      abnormal: 4
+    }
+  },
+  onShow: function() {
+    wx.hideHomeButton()
   },
   onLoad: function() {
     this.getData()

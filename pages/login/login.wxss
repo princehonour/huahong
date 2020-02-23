@@ -27,37 +27,37 @@
   justify-content: center;
 }
 
-.title>image{
+.title>image {
   width: 90%;
-  height: 48px;
+  height: 90rpx;
 }
 
 .content {
   width: 88%;
-  height: 320px;
+  height: 640rpx;
   background: rgba(255, 255, 255, 1);
-  border-radius: 6px;
+  border-radius: 12rpx;
   box-sizing: border-box;
-  padding: 15px 20px;
+  padding: 32rpx 46rpx;
 }
 
 .content-title {
-  font-size: 26px;
+  font-size: 46rpx;
   font-weight: 600;
   color: #5ac8b7;
   width: 80%;
   text-align: left;
   box-sizing: border-box;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
+  letter-spacing: 6rpx;
+  margin-bottom: 30rpx;
 }
 
 .content input {
   box-sizing: border-box;
   width: 100%;
   border-bottom: 1px solid #9a9a9a83;
-  height: 40px;
-  padding-left: 30px;
+  height: 80rpx;
+  padding-left: 44rpx;
 }
 
 .content >button {
@@ -79,7 +79,15 @@
 }
 
 .icon {
-  width: 14px;
-  height: 16px;
+  width: 30rpx;
+  height: 36rpx;
   position: absolute;
+}
+
+.auto-login {
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 36rpx;
+  letter-spacing: 4rpx;
+  color: #9a9a9a9a;
 }

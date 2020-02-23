@@ -9,6 +9,14 @@
   </view>
   <view class="content">
     <view class="item-row">
+      <view class="first-item">
+        当日检疫总数: {{checkInfo.total}}人 正常：
+        <view style="color:#51CCBA">{{checkInfo.normal}}</view>
+        人 异常：
+        <view style="color:#FF6161">{{checkInfo.abnormal}}</view>人
+      </view>
+    </view>
+    <view class="item-row">
       <view class="item" style="background:#33E3C8" bindtap="toHealthReport">
         <image src="../../assets/images/homePage/note.png"></image>
         健康填报
@@ -29,7 +37,7 @@
       </view>
     </view>
   </view>
-  <!-- <view class="foot" bindtap="scanCode">
+  <!-- <view class="foot" bindtap="scanCode" data-action="QUARANTINE_SCAN">
     <view class="foot-content">
       <image src="../../assets/images/homePage/qrcode-scan.png "></image>
       <view class="text">健康扫描</view>
