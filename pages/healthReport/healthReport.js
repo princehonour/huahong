@@ -223,7 +223,7 @@ Page({
     } else {
       ifleave = ''
     }
-    https.postRequest('/a/common/health-statement/employee/apply', {
+    https.postRequest('/common/health-statement/employee/apply', {
       livingPlace: that.data.nowplace,
       name: that.data.name,
       whetherDomestic: that.data.radio2,
