@@ -61,7 +61,7 @@
 }
 
 .content >button {
-  margin-top: 40px;
+  margin-top: 80rpx;
   color: #fff;
   font-size: 18px;
   letter-spacing: 10px;
@@ -72,7 +72,7 @@
 }
 
 .input-wrapper {
-  margin-top: 30px;
+  margin-top: 40rpx;
   display: flex;
   align-items: center;
   position: relative;

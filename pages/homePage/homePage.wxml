@@ -12,10 +12,12 @@
   <view class="content">
     <view class="item-row">
       <view class="first-item">
-        当日检疫总数: {{analysisData.quarantineNumber}}人 正常：
-        <view style="color:#51CCBA">{{analysisData.quarantineNormalNumber}}</view>
-        人 异常：
-        <view style="color:#FF6161">{{analysisData.quarantineAbnormalNumber}}</view>人
+        当日检疫总数: {{analysisData.quarantineNumber}}
+        <text space="nbsp" decode="true">&nbsp;</text>人 正常：
+        <view style="color:#51CCBA">{{analysisData.quarantineNormalNumber+ ' '}}</view>
+        <text space="nbsp" decode="true">&nbsp;</text>人 异常：
+        <view style="color:#FF6161">{{analysisData.quarantineAbnormalNumber+ ' '}}</view>
+        <text space="nbsp" decode="true">&nbsp;</text>人
       </view>
     </view>
     <view class="item-row">

@@ -2,12 +2,15 @@ import drawQrcode from '../../utils/weapp.qrcode.min.js'
 
 var https = require('../../https/https.js');
 
+const QRCODE_SIZE_RPX = 340
+
 Page({
   data: {
+    qrcodeSize: 0,
     qrCode: ''
   },
-
   onLoad: function() {
+    this.calculateQrcodeSize()
     this.getData()
   },
   getData: function() {
@@ -17,8 +20,8 @@ Page({
         let qrCode = res.data.qrCode
         if (qrCode) {
           drawQrcode({
-            width: 180,
-            height: 180,
+            width: this.data.qrcodeSize,
+            height: this.data.qrcodeSize,
             canvasId: 'myQrcode',
             text: qrCode
           })
@@ -28,11 +31,19 @@ Page({
         })
       } else {
         console.log('未查询到二维码')
-        // wx.showToast({
-        //   title: '未查询到二维码',
-        //   icon: 'none'
-        // })
       }
     }, (err) => {})
   },
+  calculateQrcodeSize: function() {
+    let _this = this
+    // 1rpx = 750 / 设备屏幕宽度
+    wx.getSystemInfo({
+      success: function(res) {
+        let qrcodeSize = (QRCODE_SIZE_RPX * (res.windowWidth / 750));
+        _this.setData({
+          qrcodeSize: qrcodeSize
+        })
+      }
+    })
+  }
 })

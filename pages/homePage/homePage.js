@@ -11,13 +11,13 @@ Page({
       quarantineAbnormalNumber: 0
     }
   },
-  onShow: function() {
-    wx.hideHomeButton({
-      success: function() {},
-      fail: function() {},
-      complete: function() {}
-    })
-  },
+  // onShow: function() {
+  //   wx.hideHomeButton({
+  //     success: function() {},
+  //     fail: function() {},
+  //     complete: function() {}
+  //   })
+  // },
   onLoad: function() {
     this.getUserInfo()
     this.getAnalysisData()

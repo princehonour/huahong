@@ -36,7 +36,7 @@
           <view class="item-body">
             <view>
               <view>姓名</view>
-              <view style="font-weight:bold;letter-spacing:0.1rem">{{item.name || '--'}}</view>
+              <view style="font-weight:bold;letter-spacing:2rpx">{{item.name || '--'}}</view>
             </view>
             <view>
               <view>是否离沪外出</view>
