@@ -4,7 +4,8 @@ Page({
   data: {
     account: '',
     password: '',
-    autoLogin: false
+    autoLogin: false,
+    eyeStatus: 'close'
   },
   onLoad: function() {
     this.autoLogin()
@@ -77,5 +78,10 @@ Page({
       return false
     }
     return true
+  },
+  toggleEye: function() {
+    this.setData({
+      eyeStatus: this.data.eyeStatus === 'open' ? 'close' : 'open'
+    })
   }
 })

@@ -57,7 +57,7 @@
   width: 100%;
   border-bottom: 1px solid #9a9a9a83;
   height: 80rpx;
-  padding-left: 44rpx;
+  padding: 0 60rpx 0 44rpx;
 }
 
 .content >button {
@@ -90,4 +90,11 @@
   font-size: 36rpx;
   letter-spacing: 4rpx;
   color: #9a9a9a9a;
+}
+
+.eye {
+  width: 38rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 6rpx;
 }

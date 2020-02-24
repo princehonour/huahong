@@ -3,6 +3,7 @@ import drawQrcode from '../../utils/weapp.qrcode.min.js'
 var https = require('../../https/https.js');
 
 const QRCODE_SIZE_RPX = 340
+const QRCODE_TYPE_EMPLOYEE = 'EMPLOYEE'
 
 Page({
   data: {
@@ -16,16 +17,19 @@ Page({
   getData: function() {
     let _this = this
     https.getRequest('/common/health-statement/employee/new', null, (res) => {
-      if (res && res.data) {
-        let qrCode = res.data.qrCode
-        if (qrCode) {
-          drawQrcode({
-            width: this.data.qrcodeSize,
-            height: this.data.qrcodeSize,
-            canvasId: 'myQrcode',
-            text: qrCode
-          })
+      if (res && res.data && res.data.qrEfficient) {
+        let id = res.data.id
+        let qrCodeJson = {
+          id: id,
+          type: QRCODE_TYPE_EMPLOYEE
         }
+        let qrCode = JSON.stringify(qrCodeJson)
+        drawQrcode({
+          width: this.data.qrcodeSize,
+          height: this.data.qrcodeSize,
+          canvasId: 'myQrcode',
+          text: qrCode
+        })
         _this.setData({
           qrCode: qrCode
         })
