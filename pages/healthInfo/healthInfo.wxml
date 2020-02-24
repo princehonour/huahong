@@ -62,7 +62,7 @@
         <button class="normal" disabled="{{submitDisable}}" style="width:40%" bindtap="submit" data-action="1">检疫正常</button>
         <button class="abnormality" disabled="{{submitDisable}}" style="width:40%" bindtap="submit" data-action="2">检疫异常</button>
       </view>
-      <view class="check-result" wx:if="{{healthInfo.healthStatementInfo.quarantineResult != 0}}">
+      <view class="check-result" wx:if="{{healthInfo.quarantineResult != 0}}">
         <view class="text">
           <view>检疫状态</view>
           <view>有效期：{{healthInfo.validity || '--'}}</view>

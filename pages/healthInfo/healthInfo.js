@@ -64,9 +64,10 @@ Page({
       let _this = this
       let action = event.currentTarget.dataset.action
       let url = this.data.type === 'EMPLOYEE' ? '/common/health-statement/employee/quarantine' : '/common/health-statement/quarantine'
+      let pk = this.data.type === 'EMPLOYEE' ? 'id' : 'appointId'
       https.putRequest(url, {
         action: action,
-        id: _this.data.healthInfoId
+        [pk]: _this.data.healthInfoId
       }, (res) => {
         wx.navigateTo({
           url: '../homePage/homePage'

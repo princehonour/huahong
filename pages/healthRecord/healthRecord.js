@@ -89,7 +89,7 @@ Page({
       style: 'color:#5AC8B7;',
       value: '否'
     }
-    if (record.quarantineResult == LEAVE) {
+    if (record.whetherToLeave == LEAVE) {
       leaveDisplay.style = 'color: #FF5555;'
       leaveDisplay.value = '是'
     }
