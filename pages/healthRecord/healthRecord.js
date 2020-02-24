@@ -4,111 +4,78 @@ const UNCHECKED = 0
 const CHECK_SUCCESS = 1
 const CHECK_FAILED = 2
 
+const UNQUARANINE = 0
 const QUARANINE_SUCCESS = 1
 const QUARANINE_FAILED = 2
 
+const LEAVE = 1
+const NOT_LEAVE = 0
+
+const PAGE_SIZE = 5
 
 Page({
   data: {
-    records: [],
     recordsDisplay: [],
     startTime: '',
-    endTime: ''
-  },
-  submit: function(event) {
-    let _this = this
-    let action = event.currentTarget.dataset.action
-    https.putRequest('/common/health-statement/quarantine', {
-      action: action,
-      id: _this.data.healthInfoId
-    }, (res) => {
-      wx.navigateTo({
-        url: '../scan/scan'
-      })
-    }, (err) => {})
+    endTime: '',
+    currentPage: 1,
+    total: 0
   },
   onLoad: function() {
-    let _this = this
-    // https.getRequest('/common/health-statement/detail/' + data.id, null, (res) => {
-    //   if(res && res.data){
-    //     _this.setData({
-    //       healthInfoId: data.id,
-    //       healthInfo: res.data
-    //     })
-    //   }else{
-    //     wx.showToast({
-    //       title: '未查询到健康证信息',
-    //       icon: 'none'
-    //     })
-    //   }
-    // }, (err) => {})
-    setTimeout(() => {
-      this.setData({
-        records: [{
-            checkTime: '2020-2-20 09:05',
-            status: 1,
-            name: '李大宝',
-            plateNum: '沪A125k1',
-            phoneNum: '18236598522',
-            submitTime: '2020-2-30 08:30'
-          },
-          {
-            checkTime: '2020-2-20 09:05',
-            status: 1,
-            name: '李大宝',
-            plateNum: '沪A125k1',
-            phoneNum: '18236598522',
-            submitTime: '2020-2-30 08:30'
-          },
-          {
-            checkTime: '2020-2-20 09:05',
-            status: 1,
-            name: '李大宝',
-            plateNum: '沪A125k1',
-            phoneNum: '18236598522',
-            submitTime: '2020-2-30 08:30'
-          },
-          {
-            checkTime: '2020-2-20 09:05',
-            status: 1,
-            name: '李大宝',
-            plateNum: '沪A125k1',
-            phoneNum: '18236598522',
-            submitTime: '2020-2-30 08:30'
-          },
-          {
-            checkTime: '2020-2-20 09:05',
-            status: 2,
-            name: '李大宝',
-            plateNum: '沪A125k1',
-            phoneNum: '18236598522',
-            submitTime: '2020-2-30 08:30'
-          }
-        ]
-      })
-      this.processData()
-    }, 1000)
+    this.getData()
   },
-  processData: function() {
-    let records = JSON.parse(JSON.stringify(this.data.records))
+  bindscrolltolower: function(event) {
+    // let test = event.current
+    this.setData({
+      currentPage: this.data.currentPage + 1
+    })
+    this.getData()
+  },
+  getData() {
+    let params = {
+      current: this.data.currentPage,
+      size: PAGE_SIZE,
+      createdDateStart: this.data.startTime,
+      createdDateEnd: this.data.endTime
+    }
+    let _this = this
+    https.getRequest('/common/health-statement/employee/list', params, (res) => {
+      if (res && res.data) {
+        _this.processData(res.data.records)
+        _this.setData({
+          currentPage: res.data.current,
+          total: res.data.total
+        })
+      } else {
+        console.log('未查询到健康证信息')
+      }
+    }, (err) => {})
+  },
+  processData: function(records) {
     let recordsDisplay = []
     let tmp = {}
     let statusDisplay = {}
+    let leaveDisplay = {}
     for (let i = 0; i < records.length; i++) {
       tmp = {}
       statusDisplay = {}
       tmp = records[i]
       statusDisplay = this.processStatusDisplay(records[i])
+      leaveDisplay = this.processLeaveDisplay(records[i])
       tmp.statusDisplay = statusDisplay
+      tmp.leaveDisplay = leaveDisplay
       recordsDisplay.push(tmp)
     }
     this.setData({
-      recordsDisplay: recordsDisplay
+      recordsDisplay: this.data.recordsDisplay.concat(recordsDisplay)
     })
   },
   processStatusDisplay: function(record) {
-    let statusDisplay = {}
-    if (record.status == QUARANINE_SUCCESS) {
+    let statusDisplay = {
+      style: 'color:#FFB525;',
+      value: '未检疫'
+    }
+    if (record.quarantineResult == QUARANINE_SUCCESS) {
       statusDisplay.style = 'color:#5AC8B7;'
       statusDisplay.value = '检疫正常'
     } else if (record.status == QUARANINE_FAILED) {
@@ -117,13 +84,46 @@ Page({
     }
     return statusDisplay
   },
+  processLeaveDisplay: function(record) {
+    let leaveDisplay = {
+      style: 'color:#5AC8B7;',
+      value: '否'
+    }
+    if (record.quarantineResult == LEAVE) {
+      leaveDisplay.style = 'color: #FF5555;'
+      leaveDisplay.value = '是'
+    }
+    return leaveDisplay
+  },
   bindTimeChange: function(event) {
     let name = event.currentTarget.dataset.name
     this.setData({
       [name]: event.detail.value
     })
   },
-  search: function(){
-    
+  search: function() {
+    let startTime = new Date(this.data.startTime)
+    let endTime = new Date(this.data.endTime)
+    if (startTime > endTime) {
+      wx.showToast({
+        title: '开始时间不能大于结束时间',
+        icon: 'none'
+      })
+    } else {
+      this.setData({
+        currentPage: 1,
+        recordsDisplay: []
+      })
+      this.getData()
+    }
+  },
+  reset: function() {
+    this.setData({
+      startTime: '',
+      endTime: '',
+      currentPage: 1,
+      recordsDisplay: []
+    })
+    this.getData()
   }
 })

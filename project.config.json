@@ -97,12 +97,6 @@
 					"pathName": "pages/healthReport/healthReport",
 					"query": "",
 					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/healthRecord/healthRecord",
-					"pathName": "pages/healthRecord/healthRecord",
-					"scene": null
 				}
 			]
 		}

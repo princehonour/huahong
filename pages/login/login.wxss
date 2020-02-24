@@ -57,11 +57,11 @@
   width: 100%;
   border-bottom: 1px solid #9a9a9a83;
   height: 80rpx;
-  padding-left: 44rpx;
+  padding: 0 60rpx 0 44rpx;
 }
 
 .content >button {
-  margin-top: 40px;
+  margin-top: 80rpx;
   color: #fff;
   font-size: 18px;
   letter-spacing: 10px;
@@ -72,7 +72,7 @@
 }
 
 .input-wrapper {
-  margin-top: 30px;
+  margin-top: 40rpx;
   display: flex;
   align-items: center;
   position: relative;
@@ -90,4 +90,11 @@
   font-size: 36rpx;
   letter-spacing: 4rpx;
   color: #9a9a9a9a;
+}
+
+.eye {
+  width: 38rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 6rpx;
 }

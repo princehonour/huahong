@@ -6,7 +6,54 @@ Page({
     healthInfo: {},
     submitDisable: false,
     showContent: false,
-    showButtons: false
+    showButtons: false,
+    type: 'EMPLOYEE'
+  },
+  onLoad: function() {
+    let _this = this
+    const eventChannel = this.getOpenerEventChannel()
+    if (eventChannel && eventChannel.on) {
+      eventChannel.on('healthInfoId', function(routeParams) {
+        let type = routeParams.type
+        if (type === 'EMPLOYEE') {
+          _this.getEmployeeInfo(routeParams)
+        } else {
+          _this.getVisitorInfo(routeParams)
+        }
+      })
+    }
+  },
+  getEmployeeInfo: function(routeParams) {
+    let _this = this
+    https.getRequest('/common/health-statement/employee/detail/' + routeParams.id, null, (res) => {
+      if (res && res.data) {
+        _this.setData({
+          healthInfoId: routeParams.id,
+          type: routeParams.type,
+          healthInfo: res.data,
+          showContent: true,
+          showButtons: routeParams.action === 'QUARANTINE_SCAN'
+        })
+      } else {
+        console.log('未查询到健康证信息')
+      }
+    }, (err) => {})
+  },
+  getVisitorInfo: function(routeParams) {
+    let _this = this
+    https.getRequest('/common/health-statement/qr/' + routeParams.id, null, (res) => {
+      if (res && res.data) {
+        _this.setData({
+          healthInfoId: routeParams.id,
+          type: routeParams.type,
+          healthInfo: res.data,
+          showContent: true,
+          showButtons: routeParams.action === 'QUARANTINE_SCAN'
+        })
+      } else {
+        console.log('未查询到健康证信息')
+      }
+    }, (err) => {})
   },
   //事件处理函数
   submit: function(event) {
@@ -16,8 +63,9 @@ Page({
     setTimeout(() => {
       let _this = this
       let action = event.currentTarget.dataset.action
-      https.putRequest('/common/health-statement/quarantine', {
-        action:action,
+      let url = this.data.type === 'EMPLOYEE' ? '/common/health-statement/employee/quarantine' : '/common/health-statement/quarantine'
+      https.putRequest(url, {
+        action: action,
         id: _this.data.healthInfoId
       }, (res) => {
         wx.navigateTo({
@@ -29,28 +77,5 @@ Page({
         })
       })
     }, 200)
-  },
-  onLoad: function() {
-    let _this = this
-    const eventChannel = this.getOpenerEventChannel()
-    if (eventChannel && eventChannel.on) {
-      eventChannel.on('healthInfoId', function(data) {
-        https.getRequest('/common/health-statement/detail/' + data.id, null, (res) => {
-          if (res && res.data) {
-            _this.setData({
-              healthInfoId: data.id,
-              healthInfo: res.data,
-              showContent: true,
-              showButtons: data.action === 'QUARANTINE_SCAN'
-            })
-          } else {
-            wx.showToast({
-              title: '未查询到健康证信息',
-              icon: 'none'
-            })
-          }
-        }, (err) => {})
-      })
-    }
   }
 })

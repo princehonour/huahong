@@ -4,13 +4,30 @@ Page({
   data: {
     account: '',
     password: '',
-    autoLogin: false
+    autoLogin: false,
+    eyeStatus: 'close'
   },
-
+  onLoad: function() {
+    this.autoLogin()
+  },
+  autoLogin: function() {
+    let auto_token = wx.getStorageSync('auto_token')
+    if (auto_token) {
+      wx.setStorageSync('token', auto_token)
+      wx.navigateTo({
+        url: '../homePage/homePage'
+      })
+    }
+  },
   verification: function(e) {
     var name = e.currentTarget.dataset.name;
-    this.setData({　　　　
+    this.setData({
       [name]: (e.detail.value + '').replace(/\s+/g, '')
+    })
+  },
+  checkboxChange: function(e) {
+    this.setData({
+      autoLogin: e.detail.value[0] === 'auto_login'
     })
   },
   //事件处理函数
@@ -21,12 +38,15 @@ Page({
       '/common/quarantine/authenticate?username=' + this.data.account + '&password=' + this.data.password, null,
       (res) => {
         if (res.data) {
-          wx.setStorageSync('token', res.data.access_token)
-          if (_this.data.auto_token) {
-            wx.setStorageSync('auto_token', res.data.access_token)
-          }
-          wx.navigateTo({
-            url: '../homePage/homePage'
+          _this.handleToken(res.data.access_token)
+          wx.setStorage({
+            key: 'permissions',
+            data: res.data.permissions,
+            success: function() {
+              wx.navigateTo({
+                url: '../homePage/homePage'
+              })
+            }
           })
         }
       },
@@ -34,6 +54,14 @@ Page({
         console.log(err)
       }
     )
+  },
+  handleToken: function(token) {
+    wx.setStorageSync('token', token)
+    if (this.data.autoLogin) {
+      wx.setStorageSync('auto_token', token)
+    } else {
+      wx.removeStorageSync('auto_token')
+    }
   },
   preCheck: function() {
     if (!this.data.account) {
@@ -51,13 +79,9 @@ Page({
     }
     return true
   },
-  onLoad: function() {
-    // let auto_token = wx.getStorageSync('auto_token')
-    // if (auto_token) {
-    //   wx.setStorageSync('token', auto_token)
-    //   wx.navigateTo({
-    //     url: '../homePage/homePage'
-    //   })
-    // }
-  },
+  toggleEye: function() {
+    this.setData({
+      eyeStatus: this.data.eyeStatus === 'open' ? 'close' : 'open'
+    })
+  }
 })

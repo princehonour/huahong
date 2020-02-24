@@ -9,7 +9,7 @@
 
 .no-content {
   width: 100%;
-  height: 80%;
+  height: 100%;
   font-size: 18px;
   color: #999;
   display: flex;
@@ -36,7 +36,9 @@
   align-items: flex-start;
   border-bottom: 1px solid #9a9a9a0e;
   box-sizing: border-box;
-  padding: 10px 20px;
+  padding: 18rpx 38rpx;
+  font-size: 34rpx;
+  letter-spacing: 2rpx;
 }
 
 .name {
@@ -45,12 +47,12 @@
 
 .key {
   color: #7c7c7c;
-  max-width: 50%;
+  max-width: 40%;
   word-wrap: break-word;
 }
 
 .value {
-  max-width: 50%;
+  max-width: 60%;
   word-wrap: break-word;
 }
 
@@ -77,11 +79,39 @@
 .subTitle {
   background: #eaf1f1;
   width: 100%;
-  height: 40px;
+  height: 80rpx;
   color: #5ac8b7;
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding-left: 20px;
+  padding-left: 38rpx;
   font-weight: bold;
+  font-size: 38rpx;
+  letter-spacing: 2rpx;
+}
+
+.check-result {
+  color: #4B4C4C;
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 10rpx 38rpx;
+  letter-spacing: 4rpx;
+}
+
+.check-result image {
+  width: 300rpx;
+  height: 100rpx;
+}
+
+.text :first-child {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.text :last-child {
+  font-size: 32rpx;
 }
