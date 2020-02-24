@@ -238,19 +238,19 @@ Page({
       companyName: that.data.workplace
     }, (res) => {
       console.log(res)
-      if (res.data.code == 1) {
+      if (res.code == 1) {
         wx.showToast({
           title: '填写成功',
           mask: true
         })
         setTimeout(function() {
           wx.reLaunch({
-            url: '../home/home',
+            url: '../homePage/homePage',
           })
         }, 1000)
-      } else if (res.data.code == 0) {
+      } else if (res.code == 0) {
         wx.showToast({
-          title: res.data.message,
+          title: res.message,
           icon: 'none',
           mask: true
         })
@@ -259,7 +259,7 @@ Page({
         })
       } else {
         wx.showToast({
-          title: res.data.message,
+          title: res.message,
           icon: 'none',
           mask: true
         })
