@@ -34,7 +34,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  border-bottom: 1px solid #9a9a9a0e;
+  border-bottom: 1px solid #f5f3f3;
   box-sizing: border-box;
   padding: 18rpx 38rpx;
   font-size: 34rpx;
@@ -91,7 +91,7 @@
 }
 
 .check-result {
-  color: #4B4C4C;
+  color: #4b4c4c;
   height: 200rpx;
   display: flex;
   align-items: center;
@@ -106,12 +106,38 @@
   height: 100rpx;
 }
 
-.text :first-child {
+.check-result .text :first-child {
   font-size: 38rpx;
   font-weight: bold;
   margin-bottom: 20rpx;
 }
 
-.text :last-child {
+.check-result .text :last-child {
+  font-size: 32rpx;
+}
+
+.validity-date {
+  color: #4b4c4c;
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 10rpx 38rpx;
+  letter-spacing: 4rpx;
+}
+
+.validity-date image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.validity-date .text :first-child {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.validity-date .text :last-child {
   font-size: 32rpx;
 }

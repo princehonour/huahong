@@ -1,4 +1,5 @@
 var https = require('../../https/https.js');
+var stringUtil = require('../../utils/stringUtil.js')
 
 Page({
   data: {
@@ -26,7 +27,7 @@ Page({
     let action = event.currentTarget.dataset.action
     wx.scanCode({
       success: (scanres) => {
-        if (JSON.parse(scanres.result)) {
+        if (stringUtil.isJson(scanres.result)) {
           let result = JSON.parse(scanres.result)
           if (this.checkId(result)) {
             wx.navigateTo({
@@ -40,7 +41,6 @@ Page({
               }
             })
           }
-
         } else {
           wx.showToast({
             title: '请扫描正确的二维码',
