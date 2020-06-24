@@ -30,14 +30,15 @@ Page({
         if (stringUtil.isJson(scanres.result)) {
           let result = JSON.parse(scanres.result)
           if (this.checkId(result)) {
+            console.log(result)
             wx.navigateTo({
-              url: '../healthInfo/healthInfo',
+              url: '../healthInfo/healthInfo?type='+result.type+'&id='+result.id+'&action='+action,
               success: function(res) {
-                res.eventChannel.emit('healthInfoId', {
-                  id: result.id,
-                  type: result.type,
-                  action: action
-                })
+                // res.eventChannel.emit('healthInfoId', {
+                //   id: result.id,
+                //   type: result.type,
+                //   action: action
+                // })
               }
             })
           }
@@ -53,6 +54,7 @@ Page({
   checkId: function(result) {
     // { "id": "2df3060e6ebfc31cf708a6dd848be79f", "type": "EMPLOYEE" }
     return result && result.id && result.type
+
     // return result && result.id && result.type ?
     //   /[0-9a-f]{8}([0-9a-f]{4}){3}[0-9a-f]{12}/.test(result.id) :
     //   false

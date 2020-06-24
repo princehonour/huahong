@@ -72,7 +72,7 @@
           <view>有效期</view>
           <view>{{healthInfo.validity || '--'}}</view>
         </view>
-        <image wx:if="{{!healthInfo.qrEfficient}}" src="../../assets/images/healthInfo/overdue.png">
+        <image wx:if="{{healthInfo.ifouttime == true}}" src="../../assets/images/healthInfo/overdue.png">
         </image>
       </view>
       <view class="check-result" wx:if="{{healthInfo.quarantineResult != 0}}">
@@ -133,12 +133,12 @@
         <view class="key">现居住地</view>
         <view class="value">{{healthInfo.healthStatementInfo.livingPlace || '--'}}</view>
       </view>
-      <view class="validity-date">
+      <view class="validity-date" >
         <view class="text">
           <view>有效期</view>
           <view>{{healthInfo.healthStatementInfo.validity || '--'}}</view>
         </view>
-        <image wx:if="{{healthInfo.healthStatementInfo.qrEfficient}}" src="../../assets/images/healthInfo/overdue.png">
+        <image wx:if="{{healthInfo.healthStatementInfo.ifouttime == true}}" src="../../assets/images/healthInfo/overdue.png">
         </image>
       </view>
       <view class="check-result" wx:if="{{healthInfo.healthStatementInfo.quarantineResult != 0}}">
@@ -152,7 +152,7 @@
         </image>
       </view>
       <!-- 显示条件：未检疫 + 检疫扫描 + 未过期 -->
-      <view class="submit" wx:if="{{healthInfo.healthStatementInfo.quarantineResult == 0 && showButtons && healthInfo.healthStatementInfo.qrEfficient}}">
+      <view class="submit" wx:if="{{healthInfo.healthStatementInfo.quarantineResult == 0 && showButtons && healthInfo.healthStatementInfo.ifouttime == false}}">
         <button class="normal" disabled="{{submitDisable}}" style="width:40%" bindtap="submit" data-action="1">检疫正常</button>
         <button class="abnormality" disabled="{{submitDisable}}" style="width:40%" bindtap="submit" data-action="2">检疫异常</button>
       </view>

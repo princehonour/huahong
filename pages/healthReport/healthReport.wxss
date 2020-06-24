@@ -62,8 +62,6 @@
   float: right;
 }
 
-
-
 .tips{
   margin-top: 40rpx;
   padding: 10rpx 30rpx;

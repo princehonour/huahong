@@ -31,6 +31,7 @@ Page({
     })
     this.getData()
   },
+  
   getData() {
     let params = {
       current: this.data.currentPage,

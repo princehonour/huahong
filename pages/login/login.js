@@ -35,7 +35,10 @@ Page({
     if (!this.preCheck()) return
     let _this = this
     https.postRequest(
-      '/common/quarantine/authenticate?username=' + this.data.account + '&password=' + this.data.password, null,
+      '/common/quarantine/authenticate',{
+        username:this.data.account,
+        password: this.data.password
+      },
       (res) => {
         if (res.data) {
           _this.handleToken(res.data.access_token)

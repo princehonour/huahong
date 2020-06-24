@@ -1,5 +1,6 @@
 // var baseurl = 'http://180.168.107.58:8071' //对外线上
 var baseurl = 'http://180.168.107.58:8061' //对外线上
+// var baseurl = 'http://192.168.0.183:8061' //朝宇
 // var baseurl = 'https://appointment.saylooks.com' //生产环境
 var prefix = '/a'
 

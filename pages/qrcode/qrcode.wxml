@@ -12,7 +12,7 @@
       <view class="qrcode-text" wx:if="{{qrCode}}">健康信息二维码</view>
       <view class="no-qrcode-text" wx:if="{{!qrCode}}">
         <view>温馨提示</view>
-        <view>健康审核通过后显示二维码</view>
+        <view>暂无有效二维码</view>
       </view>
     </view>
   </view>
